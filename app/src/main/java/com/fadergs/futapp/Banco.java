@@ -21,7 +21,7 @@ public class Banco extends SQLiteOpenHelper {
                 " nome TEXT );" );
         sqLiteDatabase.execSQL( "CREATE TABLE IF NOT EXISTS jogadores ( " +
                 " id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT ," +
-                " nome TEXT, num_caisa INTEGER, id_time INTEGER );" );
+                " nome TEXT, num_camisa INTEGER, id_time INTEGER );" );
     }
 
     @Override

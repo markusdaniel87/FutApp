@@ -11,31 +11,31 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class AdapterTimes extends BaseAdapter {
+public class AdapterJogadores extends BaseAdapter {
 
-    private List<Time> listaTimes;
+    private List<Jogador> listaJogadores;
     private Context context;
     private LayoutInflater inflater;
 
-    public AdapterTimes(Context context, List<Time> listaTimes){
+    public AdapterJogadores(Context context, List<Jogador> listaJogadores){
         this.context = context;
-        this.listaTimes = listaTimes;
+        this.listaJogadores = listaJogadores;
         this.inflater = LayoutInflater.from( context );
     }
 
     @Override
     public int getCount() {
-        return listaTimes.size();
+        return listaJogadores.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return listaTimes.get( i );
+        return listaJogadores.get( i );
     }
 
     @Override
     public long getItemId(int i) {
-        return listaTimes.get( i ).getId();
+        return listaJogadores.get( i ).getId();
     }
 
     @Override
@@ -44,21 +44,23 @@ public class AdapterTimes extends BaseAdapter {
         ItemSuporte item;
 
         if ( view == null){
-            view = inflater.inflate(R.layout.layout_lista, null);
+            view = inflater.inflate(R.layout.layout_lista_jogadores, null);
             item = new ItemSuporte();
             item.tvId = (TextView) view.findViewById(R.id.tvId);
             item.tvNome = (TextView) view.findViewById(R.id.tvNome);
+            item.tvCamisa = (TextView) view.findViewById(R.id.tvCamisa);
             item.layout = (LinearLayout) view.findViewById(R.id.layout);
             view.setTag( item );
         }else {
             item = (ItemSuporte) view.getTag();
         }
 
-        Time time = listaTimes.get( i );
-        item.tvId.setText( String.valueOf( time.getId() ) );
-        item.tvNome.setText( time.getNome()  );
+        Jogador jogador = listaJogadores.get( i );
+        item.tvId.setText( String.valueOf( jogador.getId() ) );
+        item.tvNome.setText( jogador.getNome()  );
+        item.tvCamisa.setText( String.valueOf(jogador.getNum_camisa())  );
 
-        if ( time.getNome().equals( "Lista Vazia!" )){
+        if ( jogador.getNome().equals( "Lista Vazia!" )){
             item.tvId.setText( " " );
         }
 
@@ -74,7 +76,7 @@ public class AdapterTimes extends BaseAdapter {
 
 
     private class ItemSuporte{
-        TextView tvId, tvNome;
+        TextView tvId, tvNome, tvCamisa;
         LinearLayout layout;
     }
 

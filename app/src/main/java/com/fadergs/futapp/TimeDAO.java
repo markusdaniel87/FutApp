@@ -20,17 +20,17 @@ public class TimeDAO {
         db.insert("times" , null , valores );
 
     }
-//    public static void editar(Context contexto, Time time){
-//        Banco banco = new Banco(contexto);
-//        SQLiteDatabase db = banco.getWritableDatabase();
-//
-//        ContentValues valores = new ContentValues();
-//        valores.put( "nome", time.getNome() );
-//
-//        db.update("times", valores,
-//                " id = " + time.getId(), null);
-//
-//    }
+    public static void editar(Context contexto, Time time){
+        Banco banco = new Banco(contexto);
+        SQLiteDatabase db = banco.getWritableDatabase();
+
+        ContentValues valores = new ContentValues();
+        valores.put( "nome", time.getNome() );
+
+        db.update("times", valores,
+                " id = " + time.getId(), null);
+
+    }
 
     public static void excluir(Context contexto, int idTime){
         Banco banco = new Banco(contexto);

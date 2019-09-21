@@ -32,6 +32,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        lvTimes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
+                openEdit( (Time) adapterView.getItemAtPosition(i) );
+            }
+        });
+
         lvTimes.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -84,6 +91,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void openTela(){
         Intent intent =  new Intent(this, CadastroActivity.class);
+        startActivity(intent);
+    }
+
+    public void openEdit(final Time time){
+        Intent intent =  new Intent(this, CadastroActivity.class);
+        intent.putExtra("nome_time", time.getNome());
+        intent.putExtra("time_id", time.getId());
         startActivity(intent);
     }
 }
