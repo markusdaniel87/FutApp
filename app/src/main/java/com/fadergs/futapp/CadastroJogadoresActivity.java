@@ -50,8 +50,8 @@ public class CadastroJogadoresActivity extends AppCompatActivity {
     }
 
     private void salvar(){
-        String nome = etNome.getText().toString();
-        int qtd = Integer.parseInt(etCamisa.getText().toString());
+        String nome   = etNome.getText().toString();
+        String camisa = etCamisa.getText().toString();
 
         if( nome.isEmpty() ){
             AlertDialog.Builder alerta = new AlertDialog.Builder(this);
@@ -60,10 +60,17 @@ public class CadastroJogadoresActivity extends AppCompatActivity {
             alerta.setMessage("Você deve informar o nome do time.");
             alerta.setPositiveButton("OK", null);
             alerta.show();
-        }else {
+        } else if( camisa.isEmpty() ) {
+            AlertDialog.Builder alerta = new AlertDialog.Builder(this);
+            alerta.setIcon( android.R.drawable.ic_dialog_alert);
+            alerta.setTitle("Atenção!");
+            alerta.setMessage("Você deve informar o número da camisa.");
+            alerta.setPositiveButton("OK", null);
+            alerta.show();
+        } else {
             Jogador p = new Jogador();
             p.setNome( nome );
-            p.setNum_camisa( qtd );
+            p.setNum_camisa( Integer.parseInt(camisa) );
             p.setId_time(time_id);
             JogadorDAO.inserir( this, p );
             etNome.setText("");
